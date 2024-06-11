@@ -4,7 +4,7 @@ class Matrix:
     def __init__(self, l, c):
         self.nRows = l
         self.nCols = c
-        self.values = [[0] * c for _ in range(l)]
+        self.values = Array2D.Array2D[l,c]
     def nRows(self):
         nombredeLigne = self.nRows
         return nombredeLigne
@@ -66,34 +66,40 @@ class Matrix:
                 for k in range(self.nCols):
                     result.values[i][j] += self.values[i][k] * other.values[k][j]
         return result
-    def loadFromFile(cls, fileName):
-        with open(fileName, 'r') as file:
-            lines = file.readlines()
-        
-        rows = len(lines)
-        columns = len(lines[0].strip().split())
-        matrix = cls(rows, columns)
+    def __init__(self, fileName):
+        with open(fileName) as file:
+            line = int(file.readline())
+            col = int(file.readline())
+            self.nRows = line
+            self.nCols = col
+            self.values = Array2D.Array2D[line, col]
+            i = 0
+            for line in file:
+                values = line.split()
+                for j in range(col):
+                    self.values[i,j] = int(values[j])
+                i+=1
+        #columns = len(lines[0].strip().split())
+        #matrix = cls(line, cols)for i, line in enumerate(line):
+          # values = line.strip().split()for j, value in enumerate(cols):
+              # self.values[i, j]= int(values[j])i+=1
+            
+        file.close()
 
-        for i, line in enumerate(lines):
-            values = line.strip().split()
-            for j, value in enumerate(values):
-                matrix.set_value(i, j, int(value))
-
-
-        return matrix
-m = Matrix(4, 3)
-m1 = Matrix(4, 3)
-m.display()
-print("********************")
-print("le nombre de ligne est:", m.nRows)  
-print("********************")
-print("le nombre de colone est:", m.nCols)
+        #return matrix
+m = Matrix("etudiants.txt")
+#m1 = Matrix(4, 3)
+m.print()
+#print("********************")
+#print("le nombre de ligne est:", m.nRows)  
+#print("********************")
+#print("le nombre de colone est:", m.nCols)
 #l = (4 ,43,  1,  2)
 #c = (2 ,7 , 23 , 4)
 l = [1]
 c =[2]
-print("l'interjection est :",m.setItem(1,2))
-print(m.transpose())
-k = m.multiply(m1)
-k.display()
-m1.display()
+#print("l'interjection est :",m.setItem(1,2))
+#print(m.transpose())
+#k = m.multiply(m1)
+#k.display()
+#m1.display()
