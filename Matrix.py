@@ -47,10 +47,15 @@ class Matrix:
 
 
     def add(self, m):
-         assert (m.nRows != self.nRows) and (m.nCols != self.nCols) , "Les matrices sont incompatible pour une operation d'addition"
+         #assert (m.nRows != self.nRows) and (m.nCols != self.nCols) , "Les matrices sont incompatible pour une operation d'addition"
          for row in range(self.nRows):
              for col in range(self.nCols):
                  self[row, col] += m[row, col] 
+    def sud(self, m):
+         #assert (m.nRows != self.nRows) and (m.nCols != self.nCols) , "Les matrices sont incompatible pour une operation d'addition"
+         for row in range(self.nRows):
+             for col in range(self.nCols):
+                 self[row, col] -= m[row, col] 
 
 
 
@@ -58,8 +63,11 @@ class Matrix:
 m1 = Matrix("matrice1.txt")
 m2 = Matrix("matrice2.txt")
 m1.print()
-
-#m2.add(m1)
-
-
+print("\n")
+m2.print()
+print("\n")
+m2.add(m1)
+m2.print()
+print("\n")
+m2.sud(m1)
 m2.print()
