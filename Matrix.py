@@ -57,7 +57,8 @@ class Matrix:
              for col in range(self.nCols):
                  self[row, col] -= m[row, col] 
 
-
+    def scaleBy(self,m):
+        
 
 
 m1 = Matrix("matrice1.txt")
